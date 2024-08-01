@@ -1,6 +1,4 @@
-function flattenOnce(arr , k) {
-
-    while(k--){
+function flattenOnce(arr) {
     let flattened = [];
     for (let item of arr) {
         if (Array.isArray(item)) {
@@ -9,18 +7,18 @@ function flattenOnce(arr , k) {
             flattened.push(item);
         }
     }
-    arr = flattened;
-}
-return arr ;
+    return flattened;
 }
 
-function flattenKTimes(arr , k) {
-    console.log(arr);
+function flattenKTimes(arr, k) {
+    for (let i = 0; i < k; i++) {
+        arr = flattenOnce(arr);
+    }
+    return arr;
 }
 
 // Example usage:
-let nestedArray = [[1, 2, [3, 4]], [5, [6, 7]], 8 , [1 , [2  , [2,2,2],4],2]];
+let nestedArray = [[1, 2, [3, 4]], [5, [6, 7]], 8];
 let k = 2;
-let flattenedArray = flattenKTimes(nestedArray, 2);
+let flattenedArray = flattenKTimes(nestedArray, k);
 console.log(flattenedArray); // Output: [1, 2, 3, 4, 5, 6, 7, 8]
-
